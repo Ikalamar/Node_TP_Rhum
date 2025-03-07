@@ -9,6 +9,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mongodb": "^6.14.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ikalamar/Node_TP_Rhum.git"
   }
 }
