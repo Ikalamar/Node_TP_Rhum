@@ -1,11 +1,17 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require("express");
+const app = express();
+const PORT = 3000;
 
-const fs = require('fs');
-const { getRhums } = require('./API/V1/rhum.js');
+const { getAllRhums, findRhumById } = require("./API/V1/rhum.js");
 
-
-app.get('/rhums', (req, res) => {
-    res.send();
+app.get("/rhums", async (req, res) => {
+    getAllRhums(res);
 });
+
+app.get("/rhum/:id", async (req, res) => {
+    findRhumById(res, req.params.id);
+});
+
+app.listen(PORT, () => {
+    console.log(`Example app listening on port ${PORT}`)
+})
