@@ -6,4 +6,5 @@ Start mongodb E:\Dev\ENSIM\Node\mongodb-windows-x86_64-8.0.5\mongodb-win32-x86_6
 Avancé :
 - Affichage de tous les rhums ✅
 - Affichage d'un rhum par son id ✅
-- 
+- Création d'ingrédient ⌛
+- Affichage des ingrédient ⌛
