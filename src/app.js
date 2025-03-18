@@ -1,17 +1,18 @@
-const express = require("express");
+const express = require('express');
+const rhums = require("./API/V1/rhum.js");
 const app = express();
-const PORT = 3000;
+const port = 3000;
 
-const { getAllRhums, findRhumById } = require("./API/V1/rhum.js");
+app.use(express.json());
 
 app.get("/rhums", async (req, res) => {
-    getAllRhums(res);
+    rhums.getAllRhums(res);
 });
 
-app.get("/rhum/:id", async (req, res) => {
-    findRhumById(res, req.params.id);
+app.get("/rhum/:nom", async (req, res) => {
+    rhums.getRhumById(req, res);
 });
 
-app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
-})
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+});
