@@ -1,18 +1,25 @@
 const mongoose = require("mongoose");
 const db = require("./db");
+const Rhum = require("../../model/rhumData");
 
 db.connect();
 
-const Rhum = mongoose.model('Rhum', new mongoose.Schema({
-    nom: String,
-    origine: String,
-    annee: Number
-}));
-
-async function getAllRhums(res) {
+async function getAllRhums(req, res) {
     try {
-        const rhums = await Rhum.find();
-        res.json(rhums);
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+    
+        const startIndex = (page - 1) * limit;
+        const total = await Rhum.countDocuments();
+
+        const rhums = await Rhum.find().skip(startIndex).limit(limit);
+        res.json({
+            page,
+            limit,
+            total,
+            pages: Math.ceil(total / limit),
+            data: rhums,
+        });
     } catch (error) {
         res.status(500).json({ message: 'Erreur serveur', error });
     }
@@ -20,9 +27,9 @@ async function getAllRhums(res) {
 
 async function getRhumById(req, res) {
     try {
-        const { nom, origine, annee } = req.body;
+        let { name, type, pays } = req.body;
 
-        const rhum = await Rhum.findOne( { nom });
+        const rhum = await Rhum.findOne( { name, type, pays } );
         if (rhum) {
             res.json(rhum);
         } else {

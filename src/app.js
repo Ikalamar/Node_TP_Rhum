@@ -6,10 +6,10 @@ const port = 3000;
 app.use(express.json());
 
 app.get("/rhums", async (req, res) => {
-    rhums.getAllRhums(res);
+    rhums.getAllRhums(req, res);
 });
 
-app.get("/rhum/:nom", async (req, res) => {
+app.get("/rhum/", async (req, res) => {
     rhums.getRhumById(req, res);
 });
 
