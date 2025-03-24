@@ -8,3 +8,8 @@ Avancé :
 - Affichage d'un rhum par son id ✅
 - Création d'ingrédient ✅
 - Affichage des ingrédient ✅
+- Créer une recette privé ou public
+    une recette contient un rhum, au moins un ingrédient, des instructions écrites 
+- Lister ses recettes (avec pagination)
+- Lister les recettes publiques (avec pagination)
+- Modifier une de ses recettes
