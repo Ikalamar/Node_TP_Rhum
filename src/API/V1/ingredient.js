@@ -1,10 +1,6 @@
-const mongoose = require("mongoose");
-const db = require("./db");
-const Ingredient = require("../model/ingredientData");
+const Ingredient = require("../../model/ingredientData");
 
-db.connect();
-
-async function getAllIngredients(res) {
+async function getAllIngredients(req, res) {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
@@ -25,7 +21,7 @@ async function getAllIngredients(res) {
     }
 }
 
-async function getIngredientById(req, res) {
+async function findIngredient(req, res) {
     try {
         let { name, type, pays, adressMarket } = req.body;
 
@@ -40,4 +36,16 @@ async function getIngredientById(req, res) {
     }
 }
 
-module.exports = { getAllIngredients, getIngredientById };
+async function addIngredient(req, res) {
+    try {
+        let { name, type, pays, adressMarcket, price } = req.body;
+        const ingredient = new Ingredient({ name, type, pays, adressMarcket, price });
+        await ingredient.save();
+        res.status(201).json({ message: 'Ingrédient ajouté avec succès'});
+    
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur serveur', error });
+    }
+}
+
+module.exports = { getAllIngredients, findIngredient, addIngredient };

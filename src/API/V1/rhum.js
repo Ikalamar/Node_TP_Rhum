@@ -1,8 +1,4 @@
-const mongoose = require("mongoose");
-const db = require("./db");
 const Rhum = require("../../model/rhumData");
-
-db.connect();
 
 async function getAllRhums(req, res) {
     try {
@@ -25,7 +21,7 @@ async function getAllRhums(req, res) {
     }
 }
 
-async function getRhumById(req, res) {
+async function findRhum(req, res) {
     try {
         let { name, type, pays } = req.body;
 
@@ -40,4 +36,4 @@ async function getRhumById(req, res) {
     }
 }
 
-module.exports = { getAllRhums, getRhumById };
+module.exports = { getAllRhums, findRhum };
