@@ -1,8 +1,14 @@
 # Node_TP_Rhum
-RINGOT Estéban
+## RINGOT Estéban
 
-Start mongodb E:\Dev\ENSIM\Node\mongodb-windows-x86_64-8.0.5\mongodb-win32-x86_64-windows-8.0.5\bin\mongod.exe --dbpath H:\Home\Documents\Dev\Node\db
+### Lancer la base de donnée
+Afin de lancer la base de donnée, il faut executé la commande suivante :
+```
+mongodb <Chemin vers mongod.exe> --dbpath <Chemin vers où est stocker la bdd>
 
+Exemple :
+mongodb E:\Dev\...\mongodb-win32-x86_64-windows-8.0.5\bin\mongod.exe --dbpath H:\...\Dev\Node\db
+```
 Avancé :
 - Affichage de tous les rhums ✅
 - Affichage d'un rhum par son id ✅
