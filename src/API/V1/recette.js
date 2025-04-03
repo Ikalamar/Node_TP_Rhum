@@ -80,11 +80,10 @@ async function getRecetteByCompte(req, res) {
 
 async function addRecette(req, res) {
     try {
-        let { name, rhum, ingredients } = req.body;
-        const recette = new Recette({ name, rhum, ingredients, instructions });
+        const { name, rhum, ingredients, instructions } = req.body;
+        const recette = new Recette({ name, rhum, ingredients, instructions, user: req.compte._id });
         await recette.save();
-        res.status(201).json({ message: 'Recette ajoutée avec succès'});
-    
+        res.status(201).json({ message: 'Recette ajoutée avec succès', recette });
     } catch (error) {
         res.status(500).json({ message: 'Erreur serveur', error });
     }
