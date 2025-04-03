@@ -1,7 +1,12 @@
 const express = require('express');
+
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = '';
+
 const db = require("./API/V1/db");
 const rhums = require("./API/V1/rhum.js");
 const ingredients = require("./API/V1/ingredient.js");
+
 const app = express();
 const port = 3000;
 db.connect();
@@ -42,10 +47,32 @@ app.get("/recette/", async (req, res) => {
     recettes.findRecette(req, res);
 });
 
+app.get("/recette/:id", async (req, res) => {
+    recettes.getRecettePublic(req, res);
+});
+
 app.post("/addRecette", async (req, res) => {
     recettes.addRecette(req, res);
 });
 
+app.put("/updateRecette/:id", async (req, res) => {
+    recettes.updateRecette(req, res);
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
+});
+
+
+//COMPTE
+app.get("/comptes", async (req, res) => {
+    comptes.getAllComptes(req, res);
+});
+
+app.post("/addCompte", async (req, res) => {
+    comptes.addCompte(req, res);
+});
+
+app.post("/login", async (req, res) => {
+    comptes.login(req, res);
 });

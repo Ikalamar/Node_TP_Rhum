@@ -36,6 +36,32 @@ async function findRecette(req, res) {
     }
 }
 
+async function getRecettePublic(req, res) {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+    
+        const startIndex = (page - 1) * limit;
+        const total = await Recette.countDocuments();
+
+        const recette = await Recette.findById(req.params.id);
+        if (recette) {
+            res.json({
+                page,
+                limit,
+                total,
+                pages: Math.ceil(total / limit),
+                data: recettes,
+            });
+        } else {
+            res.status(404).json({ message: 'Recette non trouvée' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur serveur', error });
+    }
+}
+
+
 async function addRecette(req, res) {
     try {
         let { name, rhum, ingredients } = req.body;
@@ -48,4 +74,19 @@ async function addRecette(req, res) {
     }
 }
 
-module.exports = { getAllRecettes, findRecette, addRecette };
+async function updateRecette(req, res) {
+    try {
+        let { name, rhum, ingredients } = req.body;
+        const recette = await Recette.findByIdAndUpdate(req.params.id, { name, rhum, ingredients }, { new: true });
+        if (recette) {
+            res.json({ message: 'Recette mise à jour avec succès', recette });
+        } else {
+            res.status(404).json({ message: 'Recette non trouvée' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur serveur', error });
+    }
+}
+
+
+module.exports = { getAllRecettes, findRecette, getRecettePublic, addRecette, updateRecette };
