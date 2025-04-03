@@ -14,7 +14,11 @@ const Recette = mongoose.model('eri_Recette', new mongoose.Schema({
     isPublic: {
         type: Boolean,
         default: true
-    }
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'eri_User'
+    },
 }));
 
 module.exports = Recette;
