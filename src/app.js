@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 
 // const jwt = require('jsonwebtoken');
 // const JWT_SECRET = '';
@@ -14,7 +15,7 @@ const port = process.env.PORT || 3000;
 db.connect();
 
 app.use(express.json());
-
+app.use(helmet());
 
 //RHUMS
 app.get("/rhums", async (req, res) => {
