@@ -1,11 +1,13 @@
 const express = require('express');
 
-const jwt = require('jsonwebtoken');
-const JWT_SECRET = '';
+// const jwt = require('jsonwebtoken');
+// const JWT_SECRET = '';
 
 const db = require("./API/V1/db");
 const rhums = require("./API/V1/rhum.js");
 const ingredients = require("./API/V1/ingredient.js");
+const recettes = require("./API/V1/recette.js");
+const comptes = require("./API/V1/compte.js");
 
 const app = express();
 const port = 3000;
@@ -40,15 +42,11 @@ app.post("/addIngredient", async (req, res) => {
 
 //RECETTES
 app.get("/recettes", async (req, res) => {
-    recettes.getAllRecettes(req, res);
+    recettes.getAllRecettesPublic(req, res);
 });
 
 app.get("/recette/", async (req, res) => {
     recettes.findRecette(req, res);
-});
-
-app.get("/recette/:id", async (req, res) => {
-    recettes.getRecettePublic(req, res);
 });
 
 app.post("/addRecette", async (req, res) => {
@@ -57,10 +55,6 @@ app.post("/addRecette", async (req, res) => {
 
 app.put("/updateRecette/:id", async (req, res) => {
     recettes.updateRecette(req, res);
-});
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
 });
 
 
@@ -75,4 +69,8 @@ app.post("/addCompte", async (req, res) => {
 
 app.post("/login", async (req, res) => {
     comptes.login(req, res);
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
 });
