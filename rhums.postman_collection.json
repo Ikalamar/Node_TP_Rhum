@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "6a32b6b6-d537-48cf-a646-c8340e3b1d9b",
+		"name": "rhums",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45027789",
+		"_collection_link": "https://esteban-411944.postman.co/workspace/Esteban's-Workspace~6582a740-ad00-4829-8e29-5853f6a60094/collection/45027789-6a32b6b6-d537-48cf-a646-c8340e3b1d9b?action=share&source=collection_link&creator=45027789"
+	},
+	"item": [
+		{
+			"name": "getAllRhums",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json().data[0];\r",
+							"    \r",
+							"    pm.expect(responseData).to.include.all.keys(\r",
+							"        '_id', 'name', 'rxid_number', 'pays', 'distillerie', 'ABV', \r",
+							"        'categorie', 'vintage', 'fabriqueAvec', 'distillation', 'volume', \r",
+							"        'age', 'type', 'degre', 'imagePath', 'visible', 'createdAt', 'updatedAt', '__v'\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Data array is present and contains the expected number of elements\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.data).to.be.an('array');\r",
+							"    pm.expect(responseData.data).to.have.lengthOf(responseData.limit);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/rhums",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"rhums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findRhum",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 404\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(404);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.message).to.exist;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/rhum/?name=2010&pays=Marie Galante&type=Rhum",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"rhum",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "2010"
+						},
+						{
+							"key": "pays",
+							"value": "Marie Galante"
+						},
+						{
+							"key": "type",
+							"value": "Rhum"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
