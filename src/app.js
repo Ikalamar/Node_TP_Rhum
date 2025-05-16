@@ -10,7 +10,7 @@ const recettes = require("./API/V1/recette.js");
 const comptes = require("./API/V1/compte.js");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 db.connect();
 
 app.use(express.json());
