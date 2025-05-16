@@ -9,7 +9,12 @@ mongodb <Chemin vers mongod.exe> --dbpath <Chemin vers où est stocker la bdd>
 Exemple :
 mongodb E:\Dev\...\mongodb-win32-x86_64-windows-8.0.5\bin\mongod.exe --dbpath H:\...\Dev\Node\db
 ```
-Avancé :
+
+### Utilisation
+Il est recommandé d'utiliser Postman ou Bruno pour utiliser l'application.
+
+
+### Avancé du projet 
 - Affichage de tous les rhums ✅
 - Affichage d'un rhum par son id ✅
 - Création d'ingrédient ✅
