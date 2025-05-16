@@ -4,10 +4,10 @@
 ### Lancer la base de donnée
 Afin de lancer la base de donnée, il faut executé la commande suivante :
 ```
-mongodb <Chemin vers mongod.exe> --dbpath <Chemin vers où est stocker la bdd>
+<Chemin vers mongod.exe> --dbpath <Chemin vers où est stocker la bdd>
 
 Exemple :
-mongodb E:\Dev\...\mongodb-win32-x86_64-windows-8.0.5\bin\mongod.exe --dbpath H:\...\Dev\Node\db
+E:\Dev\...\mongodb-win32-x86_64-windows-8.0.5\bin\mongod.exe --dbpath H:\...\Dev\Node\db
 ```
 
 ### Utilisation
