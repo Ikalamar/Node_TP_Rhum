@@ -1,4 +1,4 @@
-const Compte = require("../../model/compte");
+const Compte = require("../../model/compteData");
 const bcrypt = require('bcrypt');
 
 async function getAllComptes(req, res) {
@@ -54,8 +54,8 @@ async function login(req, res) {
             return res.status(401).json({ message: 'Mot de passe incorrect' });
         }
 
-        const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
-        res.json({ message: 'Connexion réussie', token });
+        // const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+        // res.json({ message: 'Connexion réussie', token });
     } catch (error) {
         res.status(500).json({ message: 'Erreur serveur', error });
     }
