@@ -61,4 +61,4 @@ async function login(req, res) {
     }
 }
 
-module.exports = { getAllComptes, addCompte };
+module.exports = { getAllComptes, addCompte, login };
