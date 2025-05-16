@@ -1,4 +1,4 @@
-const Recette = require("../../model/recette");
+const Recette = require("../../model/recetteData");
 
 async function getAllRecettes(req, res) {
     try {
